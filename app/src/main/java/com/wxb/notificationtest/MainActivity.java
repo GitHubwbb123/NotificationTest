@@ -3,6 +3,8 @@ package com.wxb.notificationtest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*其中Android系统在 8.0 以后增加了通知通道*/
                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
                     //如果手机的系统大于8.0也就是26，需要建立通知通道
+                    Intent intent=new Intent(this,NotificationActivity.class);
+                    PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
                     String channelId="notification_simple";
                     NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     NotificationChannel channel = new NotificationChannel(channelId, "simple", NotificationManager.IMPORTANCE_DEFAULT);
@@ -39,11 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setWhen(System.currentTimeMillis())
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
+                            .setContentIntent(pendingIntent)
                             .build();
                     notificationManager.notify(1, notification);
                 }
                 else{
                     String channelId="notification_simple";
+                    Intent intent=new Intent(this,NotificationActivity.class);
+                    PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
                     NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     Notification notification = new NotificationCompat.Builder(this,channelId)
                             .setContentTitle("这是一个通知")
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setWhen(System.currentTimeMillis())
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
+                            .setContentIntent(pendingIntent)
                             .build();
                     notificationManager.notify(1, notification);
 
