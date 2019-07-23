@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
                             .setContentIntent(pendingIntent)
+                            .setAutoCancel(true)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                           // .setVibrate(new long[]{0,1000,1000,1000})
+                          //  .setLights(Color.GREEN,1000,1000)
                             .build();
                     notificationManager.notify(1, notification);
                 }
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
                             .setContentIntent(pendingIntent)
+                            .setAutoCancel(true)
+                            //.setVibrate(new long[]{0,1000,1000,1000})
+                           // .setLights(Color.GREEN,1000,1000)
                             .build();
                     notificationManager.notify(1, notification);
 
